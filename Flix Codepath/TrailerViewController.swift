@@ -25,7 +25,10 @@ class TrailerViewController: UIViewController, WKUIDelegate {
             let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
             print(dataDictionary)
             let results = dataDictionary["results"] as! [[String: Any]]
-            let mytID = results[0]["key"] as! String
+            var mytID = ""
+            if results.count > 1 {
+                mytID = results[0]["key"] as! String
+            }
             let movieURL = URL(string: "https://www.youtube.com/watch?v=" + mytID)
             print(movieURL)
             let movieReq = URLRequest(url: movieURL!)
